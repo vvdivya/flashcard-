@@ -1,0 +1,171 @@
+{% comment %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Basic font styling */
+            margin: 20px; /* Add margin around the page */
+        }
+
+        .flashcard-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px; /* Space between each flashcard item */
+            padding: 15px; /* Padding inside the box */
+            border: 1px solid #ddd; /* Light border around the box */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background color */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+        }
+
+        .flashcard-item .term {
+            flex: 0; /* Takes up remaining space */
+            margin-right: 20px; /* Space between term and actions */
+            font-weight: bold; /* Make term text bold */
+        }
+
+        .flashcard-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .flashcard-actions a {
+            margin-right: 15px; /* Space between action links */
+            text-decoration: none; /* Remove underline from links */
+            color: #007bff; /* Link color */
+        }
+
+        .flashcard-actions a:hover {
+            text-decoration: underline; /* Underline on hover for better UX */
+        }
+
+        .flashcard-actions a:last-child {
+            margin-right: 0; /* Remove margin from last link */
+        }
+    </style>
+</head>
+<body>
+    <h1>Flashcards</h1>
+    <a href="{% url 'flashcard_create' %}">Add New Flashcard</a>
+    <ul>
+        {% for flashcard in flashcards %}
+            <li class="flashcard-item">
+                <span class="term">{{ flashcard.term }}</span>
+                <div class="flashcard-actions">
+                    <a href="{% url 'flashcard_detail' flashcard.pk %}">View Details</a>
+                    <a href="{% url 'flashcard_edit' flashcard.pk %}">Edit</a>
+                    <a href="{% url 'flashcard_delete' flashcard.pk %}">Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Basic font styling */
+            margin: 20px; /* Add margin around the page */
+        }
+
+        .flashcard-item {
+            display: flex;
+            align-items: center; /* Center align items vertically */
+            margin-bottom: 10px; /* Space between each flashcard item */
+            border: 1px solid #ddd; /* Light border around the flashcard item */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background color */
+            padding: 10px; /* Padding inside the flashcard item */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+        }
+
+        .flashcard-term-box {
+            flex: 0.1; /* Takes up more space */
+            padding: 10px; /* Padding inside the term box */
+            border: 1px solid #ddd; /* Light border around the term box */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #d1e7dd; /* Light green background color */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+            margin-right: 10px; /* Space between term box and actions */
+        }
+
+        .flashcard-actions {
+            display: flex;
+            gap: 5px; /* Space between action boxes */
+        }
+
+        .flashcard-action-box {
+            flex: 1; /* Each action box takes equal space */
+            padding: 5px; /* Padding inside the action box */
+            border: 1px solid #ddd; /* Light border around the action box */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #e9ecef; /* Light gray background color for action box */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+            text-align: center; /* Center text inside the action box */
+            font-size: 14px; /* Font size for action text */
+        }
+
+        .flashcard-action-box:nth-child(1) {
+            background-color: #f8d7da; /* Light red background color for View Details */
+        }
+
+        .flashcard-action-box:nth-child(2) {
+            background-color: #fff3cd; /* Light yellow background color for Edit */
+        }
+
+        .flashcard-action-box:nth-child(3) {
+            background-color: #d4edda; /* Light green background color for Delete */
+        }
+
+        .flashcard-action-box a {
+            display: block;
+            text-decoration: none; /* Remove underline from links */
+            color: #007bff; /* Link color */
+        }
+
+        .flashcard-action-box a:hover {
+            text-decoration: underline; /* Underline on hover for better UX */
+        }
+    </style>
+</head>
+<body>
+    <h1>Flashcards</h1>
+    <a href="{% url 'flashcard_create' %}">Add New Flashcard</a>
+    <ul style="list-style: none; padding: 0;">
+        {% for flashcard in flashcards %}
+            <li class="flashcard-item">
+                <div class="flashcard-term-box">
+                    {{ flashcard.term }}
+                </div>
+                <div class="flashcard-actions">
+                    <div class="flashcard-action-box">
+                        <a href="{% url 'flashcard_detail' flashcard.pk %}">View Details</a>
+                    </div>
+                    <div class="flashcard-action-box">
+                        <a href="{% url 'flashcard_edit' flashcard.pk %}">Edit</a>
+                    </div>
+                    <div class="flashcard-action-box">
+                        <a href="{% url 'flashcard_delete' flashcard.pk %}">Delete</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

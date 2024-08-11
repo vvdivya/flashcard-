@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ flashcard.term }}</title>
+    <style>
+        .flashcard {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard" onclick="toggleDefinition()">
+        <div id="card-content">{{ flashcard.term }}</div>
+    </div>
+    <script>
+        function toggleDefinition() {
+            var content = document.getElementById('card-content');
+            if (content.innerHTML === "{{ flashcard.term }}") {
+                content.innerHTML = "{{ flashcard.definition }}";
+            } else {
+                content.innerHTML = "{{ flashcard.term }}";
+            }
+        }
+    </script>
+    <a href="{% url 'flashcard_list' %}">Back to list</a>
+</body>
+</html>
